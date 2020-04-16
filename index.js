@@ -204,7 +204,7 @@ return arr;
 // console.log(isItAnApple([ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ]));
 //
 
-/*
+// /*
 // ⭐️ Example Test Data ⭐️
 
 var inventory = [
@@ -224,7 +224,7 @@ var inventory = [
   { id: 14, car_make: "Dodge", car_model: "Ram Van 1500", car_year: 1999 }
   /// ... Truncated
 ]
-*/
+// */
 /**
   * ### Example Array Challenge:
   * 
@@ -320,9 +320,17 @@ const newArr=[];
  * For example, if getCarInfoById is invoked with the inventory and the number 1,
  * it will return `This is a Lincoln Navigator`.
 */
-function getCarInfoById(/* code here */) {
+function getCarInfoById(arr, id/* code here */) {
   /* code here */
+  for(i=0; i<arr.length; i++){
+    if(arr[i].id===id){
+  return `This is a ${arr[i].car_make} ${arr[i].car_model}`;
 }
+}
+
+// return arr[0].id;
+}
+console.log(getCarInfoById(inventory,1));
 
 /**
  * ### Challenge `getOlderCars`
