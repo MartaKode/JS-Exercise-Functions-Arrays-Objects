@@ -35,9 +35,11 @@ function addNumbers(num1, num2) {
  * the returned value should look like: 'Goodbye, Andy. Have a great day.'
  * 
 */
-function sayGoodbye(/* code here */) {
+function sayGoodbye(/* code here */name) {
   /* code here */
+  return `Goodbye, ${name}. Have a great day.`
 }
+// console.log(sayGoodbye('Francuś'));
 
 /**
  * ### Challenge `temperatureCtoF`
@@ -53,9 +55,13 @@ function sayGoodbye(/* code here */) {
  * Hint 1: The formula for converting celsius to fahrenheit is t*9/5 + 32 where t is the temperature in celsius.
  * Hint 2: There is a very easy way to round numbers in JS. Do a google search to find out how. 
 */
-function temperatureCtoF(/* code here */) {
+function temperatureCtoF(celsius/* code here */) {
   /* code here */
+const farenheit=celsius*9/5+32;
+  return Math.round(farenheit);
 }
+// console.log(temperatureCtoF(24));
+
 
 /**
  * ### Challenge `temperatureInF`
@@ -74,10 +80,17 @@ function temperatureCtoF(/* code here */) {
  * 
  * Hint: You can call your `temperatureCtoF` function from inside `temperatureInF`.
 */
-function temperatureInF(/* code here */) {
+function temperatureInF(tempNum,unit/* code here */) {
   /* code here */
-}
 
+  if(unit==='C'){
+   return temperatureCtoF(tempNum)+'F';
+  }
+else if(unit==='F')
+  return tempNum+'F';
+}
+// console.log(temperatureInF(24,'C'));
+// console.log(temperatureInF(88,'F'));
 
 /**
  * ### Challenge `makePersonObject`
@@ -95,16 +108,23 @@ function temperatureInF(/* code here */) {
  *   email: "leia@leia.com",
  * }
 */
-function makePersonObject(/* code here */) {
+function makePersonObject(id, name, email/* code here */) {
   /* code here */
+const personObject=
+{
+  id: id,
+  name: name,
+  email: email
+}
+  return personObject;
 }
 
+// console.log(makePersonObject(5,'leia', 'leia@leia.com'))
 /**
  * ### Challenge `getName`
  * 
  * @instructions
- * This function takes as its only argument
- * an object containing a `name` property,
+ * This function takes as its only argument an object containing a `name` property,
  * and return a string that reads `Hello, my name is {name}`,
  * where `{name}` is the name stored in the object.
  * 
@@ -112,9 +132,18 @@ function makePersonObject(/* code here */) {
  * passing { id: 1, name: 'Leia', email: 'leia@leia.com` } as the argument,
  * the returned value should look like `Hello, my name is Leia`.
 */
-function getName(/* code here */) {
+function getName({id,name,email}/* code here */) {
   /* code here */
+  const personObject= {
+id:id,
+name:name,
+email:email
+  }
+
+  return `Hello, my name is ${personObject.name}`;
 }
+
+// console.log(getName({id: 1, name: 'Leia', email: 'leia@leia.com'}));
 
 
 /**
@@ -132,10 +161,17 @@ function getName(/* code here */) {
  * passing in [ 'orange', 'grape', 'apple', 'banana', 'mango' ] as the argument,
  * the returned value should be: 2.
 */
-function appleIndex(/* code here */) {
+function appleIndex(arr/* code here */) {
   /* code here */
+  
+for(i=0; i<arr.length; i++){
+if(arr[i]==='apple'){
+return i;
+}
 }
 
+}
+// console.log(appleIndex([ 'orange', 'grape', 'apple', 'banana', 'mango' ]));
 /**
  * ### Challenge `isItAnApple`
  * 
@@ -151,13 +187,24 @@ function appleIndex(/* code here */) {
  * passing in [ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ] as the argument,
  * the returned value should be: [ false, true, false, false, true, false ].
 */
-function isItAnApple(/* code here */) {
+function isItAnApple(arr/* code here */) {
   /* code here */
+
+for(i=0; i<arr.length; i++){
+if(arr[i]==='apple'){
+arr[i]=true;
+}
+else 
+arr[i]=false;
 }
 
+return arr;
+}
 
+// console.log(isItAnApple([ 'orange', 'apple', 'banana', 'apples', 'apple', 'mango' ]));
+//
 
-/*
+// /*
 // ⭐️ Example Test Data ⭐️
 
 var inventory = [
@@ -177,7 +224,7 @@ var inventory = [
   { id: 14, car_make: "Dodge", car_model: "Ram Van 1500", car_year: 1999 }
   /// ... Truncated
 ]
-*/
+// */
 /**
   * ### Example Array Challenge:
   * 
@@ -209,10 +256,18 @@ function get3rdCar(inventory) {
  * For example, if getCarInfoByIndex is invoked with the inventory and the number 0,
  * it will return `This is a Lincoln Navigator`.
 */
-function getCarInfoByIndex(inventory, index) {
+function getCarInfoByIndex(arr, index) {
   /* code here */
+  
+for(i=0; i<arr.length; i++){
+if(index===i){
+
+return `This is a ${arr[i].car_make} ${arr[i].car_model}`;
+}
+}
 }
 
+// console.log(getCarInfoByIndex(inventory,0))
 /**
  * ### Challenge `getLastCarInfo`
  * 
@@ -224,9 +279,13 @@ function getCarInfoByIndex(inventory, index) {
  * For example, if getLastCarInfo is invoked passing the inventory inside /data/inventory.js,
  * it will return `This is a Lincoln Town Car`.
 */
-function getLastCarInfo(/* code here */) {
+function getLastCarInfo(arr /* code here */) {
   /* code here */
+
+  return `This is a ${arr[arr.length-1].car_make} ${arr[arr.length-1].car_model}`;
 }
+
+// console.log(getLastCarInfo(inventory));
 
 /**
  * ### Challenge `getModelYears`
@@ -237,10 +296,16 @@ function getLastCarInfo(/* code here */) {
  *     (1) an array which is an inventory of cars like the one inside /data/inventory.js.
  * getModelYears returns an array containing all the 'car_year's in the inventory.
 */
-function getModelYears(/* code here */) {
+function getModelYears(arr/* code here */) {
   /* code here */
+const newArr=[];
+  for(i=0; i<arr.length; i++){
+    newArr.push(arr[i].car_year);
+  }
+  return newArr;
 }
 
+// console.log(getModelYears(inventory));
 /**
  * ### Challenge `getCarInfoById`
  *  * * THIS ONE IS A STRETCH GOAL. ATTEMPT IT ONLY AFTER
@@ -255,9 +320,17 @@ function getModelYears(/* code here */) {
  * For example, if getCarInfoById is invoked with the inventory and the number 1,
  * it will return `This is a Lincoln Navigator`.
 */
-function getCarInfoById(/* code here */) {
+function getCarInfoById(arr, id/* code here */) {
   /* code here */
+  for(i=0; i<arr.length; i++){
+    if(arr[i].id===id){
+  return `This is a ${arr[i].car_make} ${arr[i].car_model}`;
 }
+}
+
+// return arr[0].id;
+}
+console.log(getCarInfoById(inventory,1));
 
 /**
  * ### Challenge `getOlderCars`
